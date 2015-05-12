@@ -14,7 +14,7 @@ function getOffset( el ) {
     return { top: _y, left: _x };
 }
 
-var colors = ['#00AACC', '#FF4E00', '#B90000', '#5F9B0A', '#4D4D4D'];
+var colors = ['00AACC', 'FF4E00', 'B90000', '5F9B0A', '4D4D4D'];
 var colorIndex = 0;
 // We will cache our UUID in order to establish the communication channel
 var _uuid;
@@ -41,7 +41,7 @@ window.onload = function() {
       li.innerHTML = '<div data-contact="' + contact.id + '" data-url="' + url + '" class="background-image" style="background-image:url(' + url + ');">' + name.charAt(0) + '</div>';
     } else {
       li.innerHTML = '<div data-contact="' + contact.id + '" data-color="' + colors[colorIndex] + '">' + name.charAt(0) + '</div>';
-      li.querySelector('div').style["background-color"] = colors[colorIndex];
+      li.querySelector('div').style["background-color"] = '#' + colors[colorIndex];
       if (++colorIndex === colors.length -1) {
         colorIndex = 0;
       }
@@ -66,7 +66,7 @@ window.onload = function() {
   var navigation = threads.client('navigation-service');
 
   _uuid = navigation.id;
-  navigation.method('register', 'list', _uuid);
+  navigation.method('register', 'view/list/index.html', _uuid);
 
   navigation.on('beforenavigating', function(params) {
     // TODO Currently we dont need anything, but it would be useful
@@ -77,7 +77,7 @@ window.onload = function() {
   navigation.on('navigationend', function(params) {
     document.querySelector('ul').classList.remove('no-events');
     switch(params.previous) {
-      case 'detail':
+      case 'view/detail/index.html':
         // Remove effect from element moved previously
         element.style.transform = '';
         element.addEventListener(
@@ -89,7 +89,7 @@ window.onload = function() {
         );
         element.classList.remove('move-me');
         break;
-      case 'settings':
+      case 'view/settings/index.html':
         settingsButton.classList.remove('rotate');
         break;
     }
@@ -104,7 +104,7 @@ window.onload = function() {
         'goto',
         _uuid,
         {
-          destination: 'settings',
+          destination: 'view/settings/index.html',
           effect: 'left'
         }
       );
@@ -132,11 +132,24 @@ window.onload = function() {
       // Retrieve the element and add all effects magic
       element = e.target;
       // Let navigation we are moving
+
+      var destination = 'view/detail/index.html?' +
+                        'contact=' + e.target.dataset.contact +
+                        '&title=' + element.textContent;
+      console.log('COLOR IS ' + e.target.dataset.color);
+
+      if (!!e.target.dataset.url) {
+        destination+= '&url=' + e.target.dataset.url;
+      } else {
+        destination+= '&color=' + e.target.dataset.color;
+      }
+
+
       navigation.method(
         'goto',
         _uuid,
         {
-          destination: 'detail',
+          destination: destination,
           effect: 'fade',
           params: {
             contact: e.target.dataset.contact || null,
