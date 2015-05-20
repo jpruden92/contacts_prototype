@@ -123,7 +123,7 @@ window.onload = function() {
   );
 
   // Add listeners for 'tap' actions in the list
-  document.querySelector('ul').addEventListener(
+	document.querySelector('ul').addEventListener(
     'click',
     function(e) {
       document.querySelector('ul').classList.add('no-events');
