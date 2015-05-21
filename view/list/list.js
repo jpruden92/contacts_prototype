@@ -21,12 +21,9 @@ var _uuid;
 // Element clicked must be cached for animations
 var element;
 
-var ul;
 var settingsButton;
 window.onload = function() {
-  ul = document.querySelector('ul');
   settingsButton = document.getElementById('settings-button');
-  ul.innerHTML = '';
 
   // Contacts service
   var contactsService = threads.client('contacts-service');
@@ -46,10 +43,6 @@ window.onload = function() {
         colorIndex = 0;
       }
     }
-
-    setTimeout(function() {
-      ul.appendChild(li);
-    });
   });
 
   // "closed" is a Promise that will be fullfilled when stream is closed with
@@ -119,53 +112,6 @@ window.onload = function() {
       );
 
       settingsButton.classList.add('rotate');
-    }
-  );
-
-  // Add listeners for 'tap' actions in the list
-	document.querySelector('ul').addEventListener(
-    'click',
-    function(e) {
-      document.querySelector('ul').classList.add('no-events');
-      // Get position for moving the element
-      var position = getOffset(e.target);
-      // Retrieve the element and add all effects magic
-      element = e.target;
-      // Let navigation we are moving
-      navigation.method(
-        'goto',
-        _uuid,
-        {
-          destination: 'detail',
-          effect: 'fade',
-          params: {
-            contact: e.target.dataset.contact || null,
-            url: e.target.dataset.url || null,
-            color: e.target.dataset.color,
-            title: element.textContent
-          }
-        }
-      );
-
-      // Add effects in exiting panels
-      element.addEventListener(
-        'transitionend',
-        function elementSelectedMove() {
-          element.removeEventListener('transitionend', elementSelectedMove);
-          element.addEventListener(
-            'transitionend',
-            function elementWidth() {
-              element.removeEventListener('transitionend', elementWidth);
-              // Send a request in order to navigate to the right panel
-              navigation.method('navigationready');
-            }
-          );
-
-          element.classList.add('move-me');
-        }
-      );
-      element.classList.add('selected');
-      element.style.transform = 'translate( ' + (-1 * position.left) + 'px, ' + (-1 * position.top) + 'px)';
     }
   );
 }

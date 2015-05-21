@@ -105,6 +105,6 @@
   }
 
   utils.cookie.getDefault = function(prop) {
-    return COOKIE_DEFAULTS(prop);
+    return COOKIE_DEFAULTS[prop];       //WTF???????
   };
 })();

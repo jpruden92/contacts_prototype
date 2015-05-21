@@ -40,7 +40,8 @@
   <link href="../../shared/style/contacts.css" rel="stylesheet">
   <link href="../../shared/style/contacts/contacts_buttons.css" rel="stylesheet">
 
-  <!-- <link rel="stylesheet" type="text/css" href="../../shared/../../contacts/elements/gaia-icons/gaia-icons.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../../shared/elements/gaia-icons/gaia-icons.css" />
+  <link rel="stylesheet" type="text/css" href="../../shared/elements/gaia-theme/gaia-theme.css" />
 
   <!-- For contacts import/export:
   <script defer type="text/javascript" src="../../shared/js/contacts/import/utilities/sdcard.js"></script>
@@ -81,13 +82,16 @@
   -->
 
   <!-- Web Components -->
-  <script defer src="../../shared/../../contacts/elements/config.js"></script>
+  <script defer src="../../shared/elements/config.js"></script>
   <script defer src="../../shared/js/component_utils.js"></script>
-  <script defer src="../../shared/../../contacts/elements/gaia_subheader/script.js"></script>
-  <script defer src="../../shared/../../contacts/elements/gaia-header/dist/gaia-header.js"></script>
+  <script defer src="../../shared/elements/gaia_subheader/script.js"></script>
+  <script defer src="../../shared/elements/gaia-header/dist/gaia-header.js"></script>
+
+  <link rel="localization" href="../../shared/elements/gaia_menu/locales/gaia_menu.en-US.properties">
+  <link rel="localization" href="../../shared/elements/gaia_sim_picker/locales/gaia_sim_picker.en-US.properties">
 
   <!--
-  <link rel="stylesheet" type="text/css" href="../../shared/../../contacts/elements/gaia_menu/style.css">
+  <link rel="stylesheet" type="text/css" href="../../shared/contacts/elements/gaia_menu/style.css">
   <link rel="stylesheet" type="text/css" href="../../shared/../../contacts/elements/gaia_sim_picker/style.css">
   <script defer src="../../shared/../../contacts/elements/gaia_menu/script.js"></script>
   <script defer src="../../shared/../../contacts/elements/gaia_sim_picker/script.js"></script>
@@ -96,6 +100,16 @@
   <script defer src="../../shared/js/lazy_loader.js"></script>
   <script defer src="../../contacts/js/utilities/performance_helper.js"></script>
   <script defer src="../../contacts/js/bootstrap.js"></script>
+
+  <link rel="localization" href="../../contacts/locales-obj/contacts.index.en-US.json">
+
+  <meta name="defaultLanguage" content="en-US">
+  <meta name="availableLanguages" content="en-US">
+  <link rel="localization" href="../../locales/contacts.en-US.properties">
+  <link rel="localization" href="../../shared/locales/import_contacts/import_contacts.en-US.properties">
+  <link rel="localization" href="../../shared/locales/date/date.en-US.properties">
+  <link rel="localization" href="../../shared/locales/phone_types/phone_types.en-US.properties">
+  <link rel="localization" href="../../contacts/locales/contacts.en-US.properties">
 
   <!-- For the build system to include in zip:
   <link href="../../shared/js/tag_visibility_monitor.js">
@@ -144,7 +158,7 @@
 
 </head>
 
-<body>
+<body role="application" class="app-contacts skin-comms theme-communications">
   <section id='view-contacts-list' role="region" data-state="active" class="view view-noscroll view-contacts-list current">
     <gaia-header id="contacts-list-header">
       <h1 id="app-title" data-l10n-id="contacts"></h1>

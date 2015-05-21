@@ -873,6 +873,7 @@ contacts.List = (function() {
 
     // Replacing old message 'startup-path-done'
     utils.PerformanceHelper.loadEnd();
+    /*
     LazyLoader.load([
      '/contacts/js/fb/fb_init.js',
      '/contacts/js/fb_loader.js',
@@ -886,6 +887,7 @@ contacts.List = (function() {
         loaded = true;
       });
     });
+    */
 
     loadICE().then(() => {
       if (Cache.enabled) {
