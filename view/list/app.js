@@ -1,6 +1,6 @@
 var dependencies = [
- './contacts/js/activities.js',
- './shared/js/contacts/utilities/event_listeners.js'
+ '../../contacts/js/activities.js',
+ '../../shared/js/contacts/utilities/event_listeners.js'
 ];
 
 // If the cache is enabled, we push lazy loading l10n to the extreme,

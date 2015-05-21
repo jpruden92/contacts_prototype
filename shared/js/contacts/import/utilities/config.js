@@ -35,6 +35,7 @@ if (typeof utils.config === 'undefined') {
     }
 
     utils.config.load = function(file) {
+      console.info("here1:", file);
       return new Promise(function(resolve, reject) {
         var isInitialized = initialized[file];
         if (isInitialized === true) {
